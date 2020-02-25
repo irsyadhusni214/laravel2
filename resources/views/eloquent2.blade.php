@@ -7,7 +7,12 @@
     <title>Eloquent</title>
 </head>
 <body>
-    @foreach($tgs as $data)
+
+        {{--nav--}}
+        @include('layouts.nav')
+        {{--endnav--}}
+
+    @foreach($mahasiswa as $data)
 <h3>{{$data->nama}}<small>[{{$data->nim}}]</small></h3>
         <h5>Hobi:
             @foreach($data->hobi as $val)
@@ -24,5 +29,7 @@
         </h4>
         <hr>
     @endforeach
+
+     <footer>Latihan Blade Templating</footer>
 </body>
 </html>

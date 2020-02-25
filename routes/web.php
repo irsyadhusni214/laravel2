@@ -3,6 +3,7 @@
 use App\Mahasiswa;
 use App\Dosen;
 use App\Hobi;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -83,8 +84,25 @@ Route::get('eloquent', function () {
 });
 
 Route::get('latihan-eloquent', function () {
-    $surs = DB::table('mahasiswas')
-        ->select('mahasiswas.nama', 'walis.nama as nama_wali', 'dosens.nama as nama_dosen', 'dosens.nipd', 'mahasiswas.hobi')
-        ->join('walis', 'walis.id_mahasiswa', '=', 'mahasiswas.id')
-        ->join('walis', 'walis.id_mahasiswa', '=', 'mahasiswas.id')->get();
+    $mahasiswa = Mahasiswa::with('wali', 'dosen', 'hobi')->take(1)->get();
+    return view('eloquent2', compact('mahasiswa'));
 });
+
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+
+// Blade Template
+Route::get('beranda', function () {
+    return view('beranda');
+});
+
+Route::get('tentang', function () {
+    return view('tentang');
+});
+
+Route::get('kontak', function () {
+    return view('kontak');
+});
+
+// CRUD
+Route::resource('dosen', 'DosenController');

@@ -7,6 +7,11 @@
     <title>Eloquent</title>
 </head>
 <body>
+
+       {{--nav--}}
+        @include('layouts.nav')
+        {{--endnav--}}
+
     @foreach($mahasiswa as $data)
 <h3>{{$data->nama}}<small>[{{$data->nim}}]</small></h3>
         <h5>Hobi:
@@ -24,5 +29,7 @@
         </h4>
         <hr>
     @endforeach
+
+    <footer>Latihan Blade Templating</footer>
 </body>
 </html>
