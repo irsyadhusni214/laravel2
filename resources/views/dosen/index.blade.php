@@ -35,9 +35,13 @@
                                     <td>{{$data->nama}}</td>
                                     <td>{{$data->nipd}}</td>
                                     <td>
-                                        <a href="">Lihat</a> |
-                                        <a href="">Ubah</a> |
-                                        <a href="">Hapus</a>
+                                    <form action="{{route('dosen.destroy',$data->id)}}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <a href="{{route('dosen.show',$data->id)}}"class ="btn btn-warning">Lihat</a> |
+                                        <a href="{{route('dosen.edit',$data->id)}}"class ="btn btn-primary">Ubah</a> |
+                                        <button type="submit" onclick="return confirm('Apakah Anda Yakin?')" class="btn btn-danger">Hapus</button>
+                                    </form>
                                     </td>
                                 </tr>
                                 @endforeach
