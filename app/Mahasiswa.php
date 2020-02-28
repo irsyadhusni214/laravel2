@@ -8,6 +8,7 @@ class Mahasiswa extends Model
 {
     protected $fillable = ['nama', 'nim', 'id_dosen'];
     public $timestamps = true;
+
     public function wali()
     {
         return $this->hasOne('App\Wali', 'id_mahasiswa');
